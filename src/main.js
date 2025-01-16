@@ -11,6 +11,7 @@ let clusters = [];
 const initMap = async () => {
   try {
     const {Map, RenderingType} = await google.maps.importLibrary("maps");
+    const {ColorScheme} = await google.maps.importLibrary("core");
 
     const fmData = await getFmProps();
 
@@ -24,13 +25,16 @@ const initMap = async () => {
     // settings wird aufgelöst
     const {center, zoom, cluster} = settings;
 
-    map = new Map(document.getElementById("map"), {
+    const mapOptions = {
       zoom,
       center,
       mapId: mapId || "DEMO_MAP_ID",
       renderingType: RenderingType.VECTOR,
       gmpDraggable: true,
-    });
+      colorScheme: ColorScheme.DARK,
+    };
+
+    map = new Map(document.getElementById("map"), mapOptions);
 
     markers = await createMarkersForMap({objects, settings, map});
 

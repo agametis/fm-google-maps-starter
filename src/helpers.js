@@ -1,6 +1,8 @@
 import "@fortawesome/fontawesome-free/js/all";
 import {buildInfoWindow} from "./infoWindow.js";
 
+import FMGofer, {Option} from "fm-gofer";
+
 export const createMarkersForMap = async ({objects, settings, map}) => {
   const {InfoWindow} = await google.maps.importLibrary("maps");
   const {AdvancedMarkerElement, PinElement} = await google.maps.importLibrary(
@@ -28,6 +30,9 @@ export const createMarkersForMap = async ({objects, settings, map}) => {
 
     priceTag.className = "price-tag";
 
+    priceTag.setAttribute("id", object.id);
+    standardHousePin.element.setAttribute("id", object.id);
+
     priceTag.textContent = object.gaNummer;
     const marker = new AdvancedMarkerElement({
       map,
@@ -47,12 +52,14 @@ export const createMarkersForMap = async ({objects, settings, map}) => {
         anchor: marker,
         map,
       });
+
+      onClinkingPin(marker);
     });
 
     marker.addListener("dragend", (event) => {
       const position = marker.position;
 
-      console.log(`Pin dropped at: ${position.lat}, ${position.lng}`);
+      onMovingPin(position);
     });
 
     return marker;
@@ -64,10 +71,46 @@ export const createMarkersForMap = async ({objects, settings, map}) => {
 /**
  * onMovingPin
  */
+const onMovingPin = (position) => {
+  const scriptName = "update_pin_position";
+  const param = {
+    lat: position.lat,
+    lng: position.lng,
+  };
+
+  FMGofer.PerformScriptWithOption(scriptName, param, Option.SuspendAndResume);
+};
 
 /**
  * onClinkingPin
  */
+const onClinkingPin = (marker) => {
+  const innerDiv = marker.element.childNodes[0].childNodes[0];
+
+  const markerID = innerDiv.getAttribute("id");
+
+  console.log(`Pin marker: ${markerID}`);
+
+  // if ((markerID = "PIN-1")) {
+  // }
+  // const iconHouse = document.createElement("div");
+
+  // iconHouse.innerHTML = '<i class="fa fa-house fa-lg"></i>';
+  // const standardHousePin = new PinElement({
+  //   glyph: iconHouse,
+  //   glyphColor: "blue",
+  // });
+
+  // standardHousePin.element.setAttribute("id", "PIN-1");
+
+  const scriptName = "clicked_pin";
+  // const param = {
+  //   lat: position.lat,
+  //   lng: position.lng,
+  // };
+
+  // FMGofer.PerformScriptWithOption(scriptName, param, Option.SuspendAndResume);
+};
 
 /**
  * onUpdateAllPins
@@ -76,3 +119,6 @@ export const createMarkersForMap = async ({objects, settings, map}) => {
 /**
  * onUpdateSinglePin
  */
+const onUpdateSinglePin = (data) => {
+  console.log(`onUpdateSinglePin: ${data}`);
+};

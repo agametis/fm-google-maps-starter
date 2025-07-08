@@ -10,7 +10,7 @@ Das node.js-Projekt basiert auf den Entwicklungsumgebung Vite.js.
 
 Das Projekt richtet sich an FileMaker-Entwickler, die Karten von Google in ihren Lösungen einsetzen möchten. Die Integration ist denkbar einfach gestaltet. Das gesamte Projekt wird im Ordner `dist` in einer einzelnen Datei `index.html` zusammengefasst. Der Inhalt der Datei kann direkt in einem FileMaker-Feld verwendet werden.
 
-Mit Hilfe der Demodatei `GoogleMapsStarter.fmp12` kann das Projekt ebefalls direkt in FileMaker im Entwicklermodus ausprobiert werden. Unter anderem wird in der Demodatei gezeigt, wie man Parameter an die Karte übergeben kann. Zusätzlich werden in dem Projekt nicht nur die klassischen Pins als Marker verwendet, sondern es wird beispielhaft gezeigt, wie ein textbasierter Marker generiert werden kann. Viele weitere Beispiele werden außerdem unter [https://developers.google.com/maps/documentation/javascript/examples](https://developers.google.com/maps/documentation/javascript/examples) bereitgestellt.
+Mit Hilfe der Demodatei `GoogleMapsStarter.fmp12` kann das Projekt ebenfalls direkt in FileMaker im Entwicklermodus ausprobiert werden. Unter anderem wird in der Demodatei gezeigt, wie man Parameter an die Karte übergeben kann. Zusätzlich werden in dem Projekt nicht nur die klassischen Pins als Marker verwendet, sondern es wird beispielhaft gezeigt, wie ein textbasierter Marker generiert werden kann. Viele weitere Beispiele werden außerdem unter [https://developers.google.com/maps/documentation/javascript/examples](https://developers.google.com/maps/documentation/javascript/examples) bereitgestellt.
 
 ## Schnellstart
 

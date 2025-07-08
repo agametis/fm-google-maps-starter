@@ -1,61 +1,68 @@
 import "@fortawesome/fontawesome-free/js/all";
-import {buildInfoWindow} from "./infoWindow.js";
+import { buildSimpleInfoWindow } from "./infoWindow.js";
 
-import FMGofer, {Option} from "fm-gofer";
+import FMGofer, { Option } from "fm-gofer";
 
-export const createMarkersForMap = async ({objects, settings, map}) => {
-  const {InfoWindow} = await google.maps.importLibrary("maps");
-  const {AdvancedMarkerElement, PinElement} = await google.maps.importLibrary(
-    "marker",
+export const createMarkersForMap = async ({ locations, settings, map }) => {
+  const { InfoWindow } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+    "marker"
   );
 
   const defaultPinFillColor = "#EA4335";
   const defaultPinBorderColor = "#C5221F";
 
-  let markerArray = objects.map((object, i) => {
+  let markerArray = locations.map((location, i) => {
     const icon = document.createElement("div");
 
     icon.innerHTML = '<i class="fa fa-house fa-lg"></i>';
 
     const iconHouse = document.createElement("div");
 
-    iconHouse.innerHTML = '<i class="fa fa-house fa-lg"></i>';
-    const standardHousePin = new PinElement({
+    const pinOptions = {
       glyph: iconHouse,
-      background: object?.pinFillColor || defaultPinFillColor,
-      borderColor: object?.pinBorderColor || defaultPinBorderColor,
+      background: location?.pinFillColor || defaultPinFillColor,
+      borderColor: location?.pinBorderColor || defaultPinBorderColor,
       glyphColor: "white",
-    });
-    const priceTag = document.createElement("div");
+    };
 
-    priceTag.className = "price-tag";
+    iconHouse.innerHTML = '<i class="fa fa-house fa-lg"></i>';
+    const standardHousePin = new PinElement(pinOptions);
+    const infoText = document.createElement("div");
 
-    priceTag.setAttribute("id", object.id);
-    standardHousePin.element.setAttribute("id", object.id);
+    infoText.className = "info-tag";
 
-    priceTag.textContent = object.gaNummer;
+    infoText.setAttribute("id", location.id);
+    standardHousePin.element.setAttribute("id", location.id);
+
+    infoText.textContent = location.details.titel;
     const marker = new AdvancedMarkerElement({
       map,
-      content: settings.priceTag ? priceTag : standardHousePin.element,
-      position: object.position,
-      title: object.description,
-      gmpDraggable: true,
+      content: settings.showInfoText ? infoText : standardHousePin.element,
+      position: location.position,
+      title: location.details.titel,
+      gmpDraggable: settings.draggable,
     });
 
-    const infoWindow = new InfoWindow({
-      content: buildInfoWindow(object),
-      ariaLabel: object.object.art,
-    });
-
-    marker.addListener("click", () => {
-      infoWindow.open({
-        anchor: marker,
-        map,
+    if (settings.showInfoText) {
+      const infoWindow = new InfoWindow({
+        content: buildSimpleInfoWindow(location.details),
+        ariaLabel: location.details.titel,
+        title: location.details.titel,
       });
 
-      onClinkingPin(marker);
-    });
-
+      marker.addListener("click", () => {
+        infoWindow.open({
+          anchor: marker,
+          map,
+        });
+      });
+    } else {
+      marker.addListener("click", () => {
+        onClinkingPin(marker);
+      });
+    }
+    // hier ist mein Edit
     marker.addListener("dragend", (event) => {
       const position = marker.position;
 
@@ -87,29 +94,18 @@ const onMovingPin = (position) => {
 const onClinkingPin = (marker) => {
   const innerDiv = marker.element.childNodes[0].childNodes[0];
 
-  const markerID = innerDiv.getAttribute("id");
+  console.log(`>>>>> marker: ${JSON.stringify(marker.element.childNodes)}`);
 
-  console.log(`Pin marker: ${markerID}`);
+  const id = innerDiv.getAttribute("id");
 
-  // if ((markerID = "PIN-1")) {
-  // }
-  // const iconHouse = document.createElement("div");
-
-  // iconHouse.innerHTML = '<i class="fa fa-house fa-lg"></i>';
-  // const standardHousePin = new PinElement({
-  //   glyph: iconHouse,
-  //   glyphColor: "blue",
-  // });
-
-  // standardHousePin.element.setAttribute("id", "PIN-1");
+  console.log(`Pin marker: ${id}`);
 
   const scriptName = "clicked_pin";
-  // const param = {
-  //   lat: position.lat,
-  //   lng: position.lng,
-  // };
+  const param = {
+    id: id,
+  };
 
-  // FMGofer.PerformScriptWithOption(scriptName, param, Option.SuspendAndResume);
+  FMGofer.PerformScriptWithOption(scriptName, param, Option.SuspendAndResume);
 };
 
 /**

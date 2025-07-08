@@ -26,6 +26,13 @@ export const getFmProps = async () => {
       Option.SuspendAndResume,
     );
     props = JSON.parse(fmData || "{}");
+  } else if (import.meta.env.PROD) {
+    const fmData = await FMGofer.PerformScriptWithOption(
+      scriptName,
+      param,
+      Option.SuspendAndResume,
+    );
+    props = JSON.parse(fmData || "{}");
   } else {
     // We are in production mode try getting the merged props
 
@@ -35,7 +42,7 @@ export const getFmProps = async () => {
       let message = "No data found.";
       console.log("Props: ", props);
       alert(message);
-       // Then we have not provided any props
+      // Then we have not provided any props
     } else {
       if (typeof props !== "object") {
         let message = "During development, please provide props as an object.";

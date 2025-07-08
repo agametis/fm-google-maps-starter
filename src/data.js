@@ -1,14 +1,18 @@
 // const mapId = "4504f8b37365c3d0";
 
-const places = [
+const locations = [
   {
-    name: "Ein Ort",
-    description: "Als Beispiel auf der Karte",
-    pinColor: "#EA4335",
-    pinBorderColor: "#C5221F",
+    id: "PIN-1",
+    pinFillColor: "#4D688F",
+    pinBorderColor: "#3B506E",
+    infoWindow: {
+      titel: "Schloss Nymphenburg",
+      strasse: "Neuhausen-Nymphenburg",
+      ort: "80638 München",
+    },
     position: {
-      lat: 37.50024109655184,
-      lng: -122.28528451834352,
+      lat: 48.15836143960082,
+      lng: 11.504008404141768,
     },
   },
 ];

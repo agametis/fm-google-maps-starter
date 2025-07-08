@@ -24,6 +24,5 @@ dist-ssr
 *.sw?
 
 *.env
-*.code-workspace
 yarn.lock
 package-lock.json

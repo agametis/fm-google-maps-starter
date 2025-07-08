@@ -1,17 +1,4 @@
 
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-/* [START maps_advanced_markers_html] */
-:root {
-  --building-color: #ff9800;
-  --house-color: #0288d1;
-  --shop-color: #7b1fa2;
-  --warehouse-color: #558b2f;
-}
-
 /*
  * Optional: Makes the sample page fill the window.
  */
@@ -31,183 +18,6 @@ body {
   width: 100%;
 }
 
-/*
- * Property styles in unhighlighted state.
- */
-.property {
-  align-items: center;
-  background-color: #ffffff;
-  border-radius: 50%;
-  color: #263238;
-  display: flex;
-  font-size: 14px;
-  gap: 15px;
-  height: 30px;
-  justify-content: center;
-  padding: 4px;
-  position: relative;
-  position: relative;
-  transition: all 0.3s ease-out;
-  width: 30px;
-}
-
-.property::after {
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-top: 9px solid #ffffff;
-  content: "";
-  height: 0;
-  left: 50%;
-  position: absolute;
-  top: 95%;
-  transform: translate(-50%, 0);
-  transition: all 0.3s ease-out;
-  width: 0;
-  z-index: 1;
-}
-
-.property .icon {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  color: #ffffff;
-}
-
-.property .icon svg {
-  height: 20px;
-  width: auto;
-}
-
-.property .details {
-  display: none;
-  flex-direction: column;
-  flex: 1;
-}
-
-.property .address {
-  color: #9e9e9e;
-  font-size: 10px;
-  margin-bottom: 10px;
-  margin-top: 5px;
-}
-
-.property .features {
-  align-items: flex-end;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-.property .features > div {
-  align-items: center;
-  background: #f5f5f5;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  display: flex;
-  font-size: 10px;
-  gap: 5px;
-  padding: 5px;
-}
-
-/*
- * Property styles in highlighted state.
- */
-.property.highlight {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
-  height: 80px;
-  padding: 8px 15px;
-  width: auto;
-}
-
-.property.highlight::after {
-  border-top: 9px solid #ffffff;
-}
-
-.property.highlight .details {
-  display: flex;
-}
-
-.property.highlight .icon svg {
-  width: 50px;
-  height: 50px;
-}
-
-.property .bed {
-  color: #ffa000;
-}
-
-.property .bath {
-  color: #03a9f4;
-}
-
-.property .size {
-  color: #388e3c;
-}
-
-/*
- * House icon colors.
- */
-.property.highlight:has(.fa-house) .icon {
-  color: var(--house-color);
-}
-
-.property:not(.highlight):has(.fa-house) {
-  background-color: var(--house-color);
-}
-
-.property:not(.highlight):has(.fa-house)::after {
-  border-top: 9px solid var(--house-color);
-}
-
-/*
- * Building icon colors.
- */
-.property.highlight:has(.fa-building) .icon {
-  color: var(--building-color);
-}
-
-.property:not(.highlight):has(.fa-building) {
-  background-color: var(--building-color);
-}
-
-.property:not(.highlight):has(.fa-building)::after {
-  border-top: 9px solid var(--building-color);
-}
-
-/*
- * Warehouse icon colors.
- */
-.property.highlight:has(.fa-warehouse) .icon {
-  color: var(--warehouse-color);
-}
-
-.property:not(.highlight):has(.fa-warehouse) {
-  background-color: var(--warehouse-color);
-}
-
-.property:not(.highlight):has(.fa-warehouse)::after {
-  border-top: 9px solid var(--warehouse-color);
-}
-
-/*
- * Shop icon colors.
- */
-.property.highlight:has(.fa-shop) .icon {
-  color: var(--shop-color);
-}
-
-.property:not(.highlight):has(.fa-shop) {
-  background-color: var(--shop-color);
-}
-
-.property:not(.highlight):has(.fa-shop)::after {
-  border-top: 9px solid var(--shop-color);
-}
-
-/* [END maps_advanced_markers_html] */
-
 table {
   width: 500px;
   border-spacing: 0px;
@@ -217,68 +27,72 @@ table {
   text-align: center;
 }
 
-.lpp-header {
-  padding-right: 180px;
-  color: #3b506e;
-  font-style: italic;
-  font-weight: 600;
-}
-
-.lpp-label {
-  color: dimgray;
-  vertical-align: top;
-  width: 40%;
-}
-
-.lpp-value {
-  vertical-align: top;
-  width: 60%;
-}
-
-.lpp-value-right {
-  vertical-align: top;
-  padding-right: 10px;
-  text-align: right;
-  width: 60%;
-}
-
-.lpp-value-bold {
-  vertical-align: top;
-  font-weight: bold;
-  padding-right: 0px;
-}
-
-.lpp-link {
-  background: #4D688F;
-  color: white;
-  border-radius: 4px;
-  padding: 5px 10px;
-  text-decoration: none;
-}
-
-.lpp-link:hover {
-  background: #3B506E;
-}
-
 /* HTML marker styles */
-.price-tag {
-  background-color: #4D688F;
+.info-tag {
+  background-color: #9295dd;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 11px;
   padding: 6px 9px;
   position: relative;
 }
 
-.price-tag::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, 0);
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #4D688F;
+/* Info Window Styles */
+.info-window-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  min-width: 280px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-window-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: #1a73e8;
+  transform: scale(2);
+  transition: transform 0.2s ease;
+}
+
+.info-window-icon:hover {
+  transform: scale(2.5);
+}
+
+.info-window-icon i {
+  color: #4285f4;
+  font-size: 2.5em;
+}
+
+.info-window-content {
+  flex: 1;
+}
+
+.info-window-content h3 {
+  color: #1a73e8;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.info-window-content p {
+  color: #5f6368;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.info-window-content p:last-child {
+  color: #202124;
+  font-weight: 500;
 }

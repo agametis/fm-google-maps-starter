@@ -1,6 +1,6 @@
 export const fmConfig = {
   server: "$",
-  file: "fm-google-maps-starter",
+  file: "GoogleMapsStarter",
   uploadScript: "uploadToFM",
-  widgetName: "google-maps",
+  widgetName: "GoogleMaps",
 };

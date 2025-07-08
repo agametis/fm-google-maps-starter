@@ -44,6 +44,8 @@ export const createMarkersForMap = async ({ locations, settings, map }) => {
       gmpDraggable: settings.draggable,
     });
 
+    marker.id = location.id;
+
     if (settings.showInfoText) {
       const infoWindow = new InfoWindow({
         content: buildSimpleInfoWindow(location.details),
@@ -64,9 +66,7 @@ export const createMarkersForMap = async ({ locations, settings, map }) => {
     }
     // hier ist mein Edit
     marker.addListener("dragend", (event) => {
-      const position = marker.position;
-
-      onMovingPin(position);
+      onMovingPin(marker);
     });
 
     return marker;
@@ -78,12 +78,17 @@ export const createMarkersForMap = async ({ locations, settings, map }) => {
 /**
  * onMovingPin
  */
-const onMovingPin = (position) => {
+const onMovingPin = (marker) => {
+  const position = marker.position;
   const scriptName = "update_pin_position";
   const param = {
     lat: position.lat,
     lng: position.lng,
   };
+
+  const id = marker.id;
+
+  console.log(`Pin marker: ${id}`);
 
   FMGofer.PerformScriptWithOption(scriptName, param, Option.SuspendAndResume);
 };
@@ -92,11 +97,7 @@ const onMovingPin = (position) => {
  * onClinkingPin
  */
 const onClinkingPin = (marker) => {
-  const innerDiv = marker.element.childNodes[0].childNodes[0];
-
-  console.log(`>>>>> marker: ${JSON.stringify(marker.element.childNodes)}`);
-
-  const id = innerDiv.getAttribute("id");
+  const id = marker.id;
 
   console.log(`Pin marker: ${id}`);
 

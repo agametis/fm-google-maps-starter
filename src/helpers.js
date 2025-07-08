@@ -32,8 +32,8 @@ export const createMarkersForMap = async ({ locations, settings, map }) => {
 
     infoText.className = "info-tag";
 
-    infoText.setAttribute("id", location.id);
-    standardHousePin.element.setAttribute("id", location.id);
+    // infoText.setAttribute("id", location.id);
+    // standardHousePin.element.setAttribute("id", location.id);
 
     infoText.textContent = location.details.titel;
     const marker = new AdvancedMarkerElement({
@@ -88,7 +88,7 @@ const onMovingPin = (marker) => {
 
   const id = marker.id;
 
-  console.log(`Pin marker: ${id}`);
+  console.log(`marker id onMovingPin: ${id}`);
 
   FMGofer.PerformScriptWithOption(scriptName, param, Option.SuspendAndResume);
 };
@@ -99,7 +99,7 @@ const onMovingPin = (marker) => {
 const onClinkingPin = (marker) => {
   const id = marker.id;
 
-  console.log(`Pin marker: ${id}`);
+  console.log(`marker id onClickingPin: ${id}`);
 
   const scriptName = "clicked_pin";
   const param = {

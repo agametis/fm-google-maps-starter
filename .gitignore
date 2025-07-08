@@ -23,6 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
-*.env
+# Ignore environment files, but keep .env.example tracked
+.env
+.env.local
+.env.production
+!.env.example
 yarn.lock
 package-lock.json

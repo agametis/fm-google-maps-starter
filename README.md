@@ -22,13 +22,9 @@ Die Pakete werden mit folgendem Befehl installiert:
 npm install
 ```
 
-Kopiere die Datei `.env.example` zu `.env.local` oder `.env.production` und trage deinen eigenen Google Maps API Key ein:
+Der Google Maps API-Key wird direkt aus FileMaker geladen und nicht mehr aus einer .env-Datei. 
 
-```bash
-cp .env.example .env.local
-```
-
-In der neuen Datei muss der Schlüssel `VITE_GOOGLE_MAPS_API_KEY` mit deinem API-Schlüssel für Google Maps gesetzt werden. Der Schlüssel kann unter [Google Cloud Console](https://console.cloud.google.com/apis/credentials/key) erstellt werden. Außerdem muss die Map ID definiert werden, die ebenfalls in der [Google Maps Console](https://console.cloud.google.com/apis/dashboard) erstellt wird. Die Map ID kann entweder direkt im Projekt eingetragen werden oder kann als Parameter aus FileMaker heraus übergeben werden.
+**Wichtig:** Man benötigt einen eigenen Google Maps API-Key. Diesen kann man wie gewohnt in der [Google Cloud Console](https://console.cloud.google.com/apis/credentials/key) erstellen. Die Map ID wird ebenfalls in der [Google Maps Console](https://console.cloud.google.com/apis/dashboard) angelegt und kann als Parameter aus FileMaker übergeben werden.
 
 ### Entwicklung
 

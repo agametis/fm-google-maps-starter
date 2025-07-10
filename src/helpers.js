@@ -32,9 +32,6 @@ export const createMarkersForMap = async ({ locations, settings, map }) => {
 
     infoText.className = "info-tag";
 
-    // infoText.setAttribute("id", location.id);
-    // standardHousePin.element.setAttribute("id", location.id);
-
     infoText.textContent = location.details.titel;
     const marker = new AdvancedMarkerElement({
       map,

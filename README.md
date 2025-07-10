@@ -2,10 +2,6 @@
 
 Google hat zum 21. Februar 2024 die Bibliothek zum Erstellen "klassischer Marker" `google.maps.Marker` abgekündigt [Mehr Infos](https://developers.google.com/maps/deprecations). Es wird empfohlen, die neuen Marker `google.maps.marker.AdvancedMarkerElement` zu verwenden [Migration](https://developers.google.com/maps/documentation/javascript/advanced-markers/migration). Da das Laden der Hauptbibliothek inzwischen  von Google ebenfalls überarbeitet wurde, zeigt dieses Projekt, wie man die Google Maps Karten für ein FileMaker-Projekt mit Hilfe eines node.js-Projektes aufbereiten kann.
 
-## FileMaker-Google-Maps-Starter
-
-Das node.js-Projekt basiert auf den Entwicklungsumgebung Vite.js.
-
 ## Projektbeschreibung
 
 Das Projekt richtet sich an FileMaker-Entwickler, die Karten von Google in ihren Lösungen einsetzen möchten. Die Integration ist denkbar einfach gestaltet. Das gesamte Projekt wird im Ordner `dist` in einer einzelnen Datei `index.html` zusammengefasst. Der Inhalt der Datei kann direkt in einem FileMaker-Feld verwendet werden.
@@ -16,7 +12,7 @@ Mit Hilfe der Demodatei `GoogleMapsStarter.fmp12` kann das Projekt ebenfalls dir
 
 ### Installation
 
-Die Pakete werden mit folgendem Befehl installiert:
+Das node.js-Projekt basiert auf den Entwicklungsumgebung Vite.js. Die Pakete werden mit folgendem Befehl installiert:
 
 ```bash
 npm install
@@ -46,7 +42,7 @@ Hierbei ist zu beachten, dass der richtige Dateiname in `fmConfig.js` angegeben 
 
 ## Funktionen
 
-- Advanced Marker
+- Advanced Marker, wie von Google empfohlen
 - Marker können als Cluster dargestellt werden
 - Dark Mode (falls nicht über die Map-ID gesteuert)
 - Eigene Marker mit InfoWindow
